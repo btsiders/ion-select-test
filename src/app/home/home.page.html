@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>ion-select test</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">    
+    <ion-text color="danger">
+        Updating the array of values for ion-select-options 
+        from a filled array to an empty array does not update the ion-select-options.
+    </ion-text>
+    <p>
+        The example list of items (BehaviorSubject) gets filled with values from 
+        array1 or array2 via an items$.next().
+        If array2 is empty, the ion-select does not empty out when
+        the list is set to array2. If you uncomment the values in array2 so that it
+        actually has values, then the swap works as expected.
+    </p>
+
+    <ion-item color="light" *ngIf="(items$ | async) as items">
+        <ion-label position="stacked">Example List Using Array{{ currentArray }}</ion-label>
+        <ion-select>
+            <ion-select-option *ngFor="let item of items" [value]="item.id">{{ item.value }}</ion-select-option>
+        </ion-select>
+    </ion-item>
+    <ion-button (click)="swap()">Swap ion-select data</ion-button>
+</ion-content>
